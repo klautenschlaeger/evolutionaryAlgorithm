@@ -9,11 +9,17 @@ from fitness import Fitness
 
 # init
 penalty = 100
-cityList = [City(id=1, neighbours=[2, 5, 4], distances=[2, 6, 3]),
-            City(id=2, neighbours=[1, 4, 3], distances=[2, 3, 4]),
-            City(id=3, neighbours=[2, 4, 5], distances=[4, 7, 3]),
-            City(id=4, neighbours=[1, 2, 3, 5], distances=[3, 3, 7, 3]),
-            City(id=5, neighbours=[4, 1, 3], distances=[3, 6, 3])]
+cityList = [City(id=1, neighbours=[2, 4], distances=[3, 3]),
+            City(id=2, neighbours=[10, 8, 3, 1], distances=[8, 6, 4, 3]),
+            City(id=3, neighbours=[2, 8, 6, 4], distances=[4, 1, 2, 2]),
+            City(id=4, neighbours=[1, 3, 6], distances=[3, 2, 5]),
+            City(id=5, neighbours=[10, 9, 7], distances=[3, 4, 7]),
+            City(id=6, neighbours=[7, 4, 3, 8, 9], distances=[3, 5, 2, 2, 4]),
+            City(id=7, neighbours=[5, 8, 6], distances=[7, 6, 3]),
+            City(id=8, neighbours=[2, 3, 7, 6], distances=[6, 1, 6, 2]),
+            City(id=9, neighbours=[10, 5, 6], distances=[10, 4, 4]),
+            City(id=10, neighbours=[2, 5, 9], distances=[8, 3, 10])
+            ]
 
 
 def createRoute(cityList):
@@ -134,6 +140,7 @@ def geneticAlgorithm(population, popSize, eliteSize, mutationRate, generations):
     print("Final distance: " + str(1 / rankRoutes(pop)[0][1]))
     bestRouteIndex = rankRoutes(pop)[0][0]
     bestRoute = pop[bestRouteIndex]
+    print(bestRoute)
     return bestRoute
 
 
@@ -150,6 +157,11 @@ def geneticAlgorithmPlot(population, popSize, eliteSize, mutationRate, generatio
     plt.ylabel('Distance')
     plt.xlabel('Generation')
     plt.show()
+    print("Final distance 2: " + str(1 / rankRoutes(pop)[0][1]))
+    bestRouteIndex = rankRoutes(pop)[0][0]
+    bestRoute = pop[bestRouteIndex]
+    print(bestRoute)
 
-geneticAlgorithm(population=cityList, popSize=10, eliteSize=2, mutationRate=0.1, generations=50)
-geneticAlgorithmPlot(population=cityList, popSize=10, eliteSize=2, mutationRate=0.1, generations=50)
+
+geneticAlgorithm(population=cityList, popSize=20, eliteSize=4, mutationRate=0.01, generations=200)
+geneticAlgorithmPlot(population=cityList, popSize=20, eliteSize=4, mutationRate=0.01, generations=200)
